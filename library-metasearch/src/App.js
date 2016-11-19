@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={require('./img/hack-the-stacks.png')} />
+          <img src={require('./img/hack-the-stacks.png')} alt="Metasearch"/>
           <h2>~Metasearch~</h2>
         </div>
         <div>
