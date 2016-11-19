@@ -12,7 +12,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Metasearch</h2>
+          <img src={require('./img/hack-the-stacks.png')} />
+          <h2>Welcome to React</h2>
         </div>
         <SearchForm />
       </div>
