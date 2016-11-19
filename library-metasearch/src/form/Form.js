@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import BiodiversityClient from '../client/BiodiversityClient'
 
 
 export default class SearchForm extends Component {
@@ -43,6 +44,7 @@ export default class SearchForm extends Component {
           <input value={this.state.value} style={styles.input} type="text" name="search" onChange={this.handleChange} />
           <input type="submit" value="Submit" style={styles.button} />
         </form>
+        <BiodiversityClient term={this.state.value}/>
       </div>
     )
   }
