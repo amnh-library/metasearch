@@ -1,11 +1,26 @@
 import React, { Component } from "react"
-import BiodiversityClient from '../client/BiodiversityClient'
+import run from '../client/BiodiversityClient';
+import BiodiversityResults from '../results/BiodiversityResults'
 
 
 export default class SearchForm extends Component {
   handleSubmit = event => {
-    alert("~~~~ submitted ~~~~ " + this.state.value)
     event.preventDefault()
+
+    let _this = this;
+
+    alert("~~~~ submitted ~~~~ " + this.state.value)
+
+    run(
+      this.state.value,
+      function (data) {
+        _this.setState({
+          results: {
+            biodiversity: data
+          }
+        });
+      }
+    );
   }
 
   handleChange = event => {
@@ -14,7 +29,12 @@ export default class SearchForm extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { value: "" }
+    this.state = {
+      results: {
+        biodiversity: {}
+      },
+      value: ""
+    };
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -44,7 +64,7 @@ export default class SearchForm extends Component {
           <input value={this.state.value} style={styles.input} type="text" name="search" onChange={this.handleChange} />
           <input type="submit" value="Submit" style={styles.button} />
         </form>
-        <BiodiversityClient term={this.state.value}/>
+        <BiodiversityResults term={this.state.value} results={this.state.results.biodiversity}/>
       </div>
     )
   }
