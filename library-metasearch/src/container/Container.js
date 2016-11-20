@@ -7,6 +7,8 @@ import WikiResults from '../results/WikiResults.js'
 import WikiClient from '../client/WikiClient.js'
 import './Container.css'
 import $ from 'jquery'
+import SierraClient from '../client/SierraClient.js'
+import SierraResults from '../results/SierraResults.js'
 
 /*
  * Container component = stateful
@@ -20,6 +22,7 @@ import $ from 'jquery'
 const apis = {
   biodiversity: BiodiversityClient,
   wiki: WikiClient,
+  sierra: SierraClient,
 };
 
 export default class Container extends Component {
@@ -81,6 +84,8 @@ export default class Container extends Component {
         return <BiodiversityResults result={result.data}/>
       case 'wiki':
         return <WikiResults result={result.data}/>
+      case 'sierra':
+        return <SierraResults results={result.data}/>
       default:
         return null;
     }
