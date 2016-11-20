@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SearchForm from './form/Form'
+import Container from './container/Container'
 import './App.css'
 
 class App extends Component {
@@ -7,12 +7,12 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={require('./img/hack-the-stacks.png')} alt="Metasearch"/>
-          <h2>~Metasearch~</h2>
+          <img className="App-header-img" src={require('./img/hack-the-stacks.png')} alt="Metasearch" />
+          <h2 className="App-title">Library Metasearch</h2>
+          <h2 className="App-title">🕵 📖</h2>
         </div>
-        <div>
-          <SearchForm />
-          {/* <Container /> */}
+        <div className="App-container">
+          <Container />
         </div>
       </div>
     )
