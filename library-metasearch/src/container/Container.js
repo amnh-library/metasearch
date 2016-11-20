@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, {Component} from 'react'
 import SearchForm from '../form/SearchForm'
 import ResultsWrapper from '../results/ResultsWrapper.js'
 import BiodiversityResults from '../results/BiodiversityResults.js'
@@ -6,15 +6,16 @@ import BiodiversityClient from '../client/BiodiversityClient.js'
 import WikiResults from '../results/WikiResults.js'
 import WikiClient from '../client/WikiClient.js'
 import './Container.css'
+import $ from 'jquery'
 
 /*
-* Container component = stateful
-* - has all the api calls as functions (imported from client components)
-* - passes the function that does the search to the SearchForm
-* - sets state based on API responses
-* - passes state as props to children components for API
-* - child components are stateless
-*/
+ * Container component = stateful
+ * - has all the api calls as functions (imported from client components)
+ * - passes the function that does the search to the SearchForm
+ * - sets state based on API responses
+ * - passes state as props to children components for API
+ * - child components are stateless
+ */
 
 const apis = {
   biodiversity: BiodiversityClient,
@@ -34,11 +35,11 @@ export default class Container extends Component {
 
   handleSearchSubmit = term => {
     console.log('handleSearchSubmit too ' + term);
-    this.setState({ term });
+    this.setState({term});
 
     let result_count = 0
     Object.keys(apis).forEach((api, i) => {
-      result_count+=1;
+      result_count += 1;
       apis[api].run(term).then((result) => {
         this.setState({
           results: this.state.results.concat([{
@@ -56,11 +57,16 @@ export default class Container extends Component {
 
   renderApiResultWrapper(result) {
     let onCloseResult = () => this.setState({
-      results: this.state.results.filter((r) => r.result_id != result.result_id)
-    })
-    return <ResultsWrapper
+      results: this.state.results.filter((r) => r.result_id !== result.result_id)
+    });
+
+    if ($.isEmptyObject(result) || $.isEmptyObject(result.data)) {
+      return null;
+    } else {
+      return (<ResultsWrapper
         key={result.result_id}
-        onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>
+        onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>);
+    }
   }
 
   renderApiResult(result) {
@@ -69,6 +75,8 @@ export default class Container extends Component {
         return <BiodiversityResults term={result.term} results={result.data}/>
       case 'wiki':
         return <WikiResults term={result.term} results={result.data}/>
+      default:
+        return null;
     }
   }
 
