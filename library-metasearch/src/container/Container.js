@@ -63,9 +63,11 @@ export default class Container extends Component {
     if ($.isEmptyObject(result) || $.isEmptyObject(result.data)) {
       return null;
     } else {
-      return (<ResultsWrapper
-        key={result.result_id}
-        onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>);
+      return (
+        <ResultsWrapper
+          key={result.result_id}
+          onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>
+      );
     }
   }
 

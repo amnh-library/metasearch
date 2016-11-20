@@ -1,6 +1,7 @@
 .container {
   display: flex;
-  flex-wrap: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-content: space-around;
 }
 
