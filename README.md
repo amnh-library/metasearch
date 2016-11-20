@@ -1,10 +1,3 @@
-# one-big-room
-repo for team one big room, working on the library metasearch challenge
+# :books: :books: https://amnh-meta-search.herokuapp.com/ :books: :books: 
 
-:books:
-
-whats up players
-
-More :books:
-
-:dog:
+Repo for team One Big Room, working on the [Library Metasearch](https://github.com/amnh/HackTheStacks/wiki/Library-Metasearch) challenge
