@@ -85,3 +85,16 @@
 .old-results {
   border-color: #b5e1ff;
 }
+
+.archives {
+  text-align: left;
+  padding-left: 2em;
+}
+
+.archives .person:before {
+  content: "\1F575";
+}
+
+.archives .default:before {
+  content: "\1F4DA";
+}

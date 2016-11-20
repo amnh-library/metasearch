@@ -11,6 +11,7 @@ function run(term) {
         return {
           title: result['title'],
           url: 'http://lbry-web-006.amnh.org:8081' + result['uri'],
+          type: result['primary_type'],
         };
       });
     }

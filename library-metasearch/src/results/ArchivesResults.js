@@ -7,10 +7,11 @@ export default class ArchivesResults extends React.Component {
     if (results.length > 0) {
     return (
       <div>
-        <div>
-        <h4>Matches:</h4>
+        <div className='archives'>
         {results.map(function (result, index) {
-          return (<div key={result.title}>
+          let typeClass = (result.type == "agent_person") ? "person" : "default";
+
+          return (<div key={result.title} className={typeClass}>
             <a href={result.url}>{result.title}</a>
           </div>)
         })}
