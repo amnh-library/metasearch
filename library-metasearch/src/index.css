@@ -7,3 +7,8 @@ body {
 #wiki-img {
   width: 200px;
 }
+
+.results-wrapper {
+  margin: 5px;
+  max-width: 45%;
+}
