@@ -5,8 +5,8 @@ export default class ResultsWrapper extends React.Component {
   render() {
     return (
       <div className="results-wrapper">
-        <button className="close" onClick={this.props.onClose}>Close</button>
         {this.props.children}
+        <button className="close-btn" onClick={this.props.onClose}>x</button>
       </div>
     );
   }

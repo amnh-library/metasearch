@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-wrap: row wrap;
+  align-content: space-around;
 }
 
 @media all and (max-width: 500px) {

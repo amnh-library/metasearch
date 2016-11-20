@@ -1,8 +1,25 @@
-.close {
-  border-radius: 100em;
+.close-btn {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  border-radius: 50rem;
   align-self: flex-end;
+  background: #004bb4;
+  border: none;
+  color: #fff;
+  align-self: baseline;
+  cursor: pointer;
+  margin-left: 2em;
+}
+
+.close-btn:hover {
+  background: #e67d17;
 }
 
 .results-wrapper {
-
+  margin: 1em 3em;
+  padding: 1em;
+  border: 1px solid #004bb4;
+  display: flex;
+  flex-direction: row;
 }
