@@ -12,9 +12,9 @@ class App extends Component {
           <div>
             <img className="App-header-logo" src={logo} alt="AMNH Logo" />
           </div>
-          <h2 className="App-title">Library Metasearch</h2>
+          <h2 className="App-title">One Big Search</h2>
           <div>
-            <img className="App-header-img" src={hackTheStacks} alt="Metasearch" />
+            <img className="App-header-img" src={hackTheStacks} alt="One Big Search" />
           </div>
         </div>
         <div className="App-container">
