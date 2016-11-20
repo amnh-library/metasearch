@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import './SearchForm.css'
 
 export default class SearchForm extends Component {
   handleSubmit = event => {
@@ -18,30 +19,18 @@ export default class SearchForm extends Component {
   }
 
   render() {
-    const styles = {
-      inputContainer: {
-        margin: "4em",
-        display: "flex",
-        flexDirection: "column"
-      },
-      input: {
-        padding: ".3rem"
-      },
-      button: {
-        margin: "1em",
-        padding: "1em"
-      }
-    }
     return (
-      <div style={styles.inputContainer} id="search-term-input">
+      <div className="input-container">
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label style={styles.label}>
+            <label className="label">
               Search for something:
             </label>
           </div>
-          <input value={this.state.value} style={styles.input} type="text" name="search" onChange={this.handleChange} />
-          <input type="submit" value="Submit" style={styles.button} />
+          <div className="submit">
+            <input className="search-term-input" value={this.state.value} type="text" name="search" onChange={this.handleChange} />
+            <input type="submit" value="Submit" className="button" />
+          </div>
         </form>
       </div>
     )

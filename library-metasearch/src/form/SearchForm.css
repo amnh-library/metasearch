@@ -1,0 +1,32 @@
+.input-container {
+  margin: 4em;
+}
+
+.search-term-input {
+  padding: .5em;
+  margin-bottom: 2em;
+  width: 100%;
+}
+
+.button {
+  margin: 1em;
+  padding: 1em 2em;
+  cursor: pointer;
+  text-transform: uppercase;
+  /*letter-spacing: .5em;*/
+  outline: 1px solid #004bb4;
+  border: 2px solid #fff;
+  color: #fff;
+  background: #004bb4;
+}
+
+.button:hover {
+  background:
+}
+
+.submit {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
