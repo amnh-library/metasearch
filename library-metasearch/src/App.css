@@ -63,21 +63,23 @@ a:hover {
     flex-direction: column;
   }
 
-  .App-header-logo {
-    margin-bottom: 1em;
-  }
-
   .App-title {
     margin-top: 0;
+  }
+}
+
+@media all and (max-width: 900px) {
+  .App-header-logo {
+    margin: 1em;
+  }
+
+  .App-header {
+    flex-direction: column;
   }
 }
 
 @media all and (max-width: 1200px) {
   .App-header-img {
     display: none;
-  }
-
-  .App-header {
-    flex-direction: column;
   }
 }
