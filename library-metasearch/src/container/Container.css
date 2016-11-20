@@ -7,9 +7,27 @@
   align-items: center;
 }
 
+.api-select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.api-select label {
+  padding: 0 .5em 0 2em;
+}
+
+.api-select input {
+  border: 1px solid blue;
+}
+
 @media all and (max-width: 500px) {
   .container {
     display: flex;
+    flex-direction: column;
+  }
+
+  .api-select {
     flex-direction: column;
   }
 }
