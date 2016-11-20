@@ -11,6 +11,7 @@ body {
 a, a:focus, a:visited {
   color: #808080;
 }
+
 a:hover {
   color: #e67d17;
 }
@@ -60,6 +61,14 @@ a:hover {
 
   .App-header {
     flex-direction: column;
+  }
+
+  .App-header-logo {
+    margin-bottom: 1em;
+  }
+
+  .App-title {
+    margin-top: 0;
   }
 }
 
