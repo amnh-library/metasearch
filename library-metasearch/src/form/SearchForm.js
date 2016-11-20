@@ -4,8 +4,9 @@ import './SearchForm.css'
 export default class SearchForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
+    event.target.blur();
     this.props.handleSubmit(this.state.value);
-    this.setState({ value: "" })
+    this.setState({value: ""})
   };
 
   handleChange = event => {
