@@ -50,6 +50,24 @@
   flex-direction: row;
 }
 
+.sierra {
+  text-align: left;
+}
+
+.sierra .book {
+  padding-left: 2em;
+}
+
+.sierra .book:before {
+  content: "\1F4DA";
+  margin-left: -2em;
+  padding-right: 1em;
+}
+
+.sierra .author {
+  font-size: 0.8em;
+}
+
 @media all and (max-width: 600px) {
   .horizontal-flex {
     flex-direction: column;

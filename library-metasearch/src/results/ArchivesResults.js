@@ -10,7 +10,7 @@ export default class ArchivesResults extends React.Component {
         <div>
         <h4>Matches:</h4>
         {results.map(function (result, index) {
-          return (<div>
+          return (<div key={result.title}>
             <a href={result.url}>{result.title}</a>
           </div>)
         })}

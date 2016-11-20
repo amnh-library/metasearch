@@ -99,7 +99,7 @@ export default class Container extends Component {
       case 'wikipedia':
         return <WikiResults result={result.data}/>
       case 'sierra':
-        return <SierraResults results={result.data}/>
+        return <SierraResults results={result.data} term={result.term}/>
       case 'archives':
         return <ArchivesResults results={result.data}/>
       default:
