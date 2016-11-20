@@ -46,8 +46,13 @@ function run(term) {
         snippet: cleaned_snippet,
       };
 
-      if (top_page.images && top_page.images.length > 0) {
-        var image_title = top_page.images[0].title;
+      var good_images = (top_page.images) ?
+        top_page.images.filter(function(image) {
+          return (!image.title.includes("Commons-logo") && !image.title.includes("Disambig"))
+        }) : [];
+
+      if (good_images.length > 0) {
+        var image_title = good_images[0].title;
 
         return wikiGet(
           {'action': 'query', 'titles': image_title, 'prop': 'imageinfo', 'iiprop': 'url', 'format': 'json'}
