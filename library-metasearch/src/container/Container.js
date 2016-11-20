@@ -37,6 +37,12 @@ export default class Container extends Component {
       term: '',
       results: [],
       result_count: 0,
+      selectedApis: {
+        'biodiversity library': false,
+        'wikipedia': false,
+        'sierra': false,
+        'archives': false
+      }
     };
   }
 
@@ -49,7 +55,9 @@ export default class Container extends Component {
 
     let result_count = 0;
 
-    Object.keys(apis).forEach((api_name, i) => {
+    Object.keys(apis)
+    .filter(api => this.state.selectedApis[api])
+    .forEach((api_name, i) => {
       result_count += 1;
       apis[api_name].run(term).then((result) => {
         _this.setState({
@@ -99,6 +107,16 @@ export default class Container extends Component {
     }
   }
 
+  handleInputChange(field, event) {
+    let selectedApis = { ...this.state.selectedApis }
+    let currentChecked = this.state.selectedApis[field.apiName]
+    selectedApis[field.apiName] = !currentChecked
+    this.setState({
+      ...this.state,
+      selectedApis
+    })
+  }
+
   render() {
     let apiResults = [];
 
@@ -109,6 +127,22 @@ export default class Container extends Component {
     return (
       <div>
         <SearchForm handleSubmit={this.handleSearchSubmit}/>
+        <div className="api-select">
+          {
+            Object.keys(apis).map((apiName, idx) => {
+              return (
+                <div key={idx}>
+                  <label>{apiName.toUpperCase()}</label>
+                  <input
+                    name={apiName}
+                    type="checkbox"
+                    defaultChecked={this.state.selectedApis[apiName]}
+                    onChange={this.handleInputChange.bind(this, {apiName})} />
+                </div>
+              )
+            })
+          }
+        </div>
         <div className="container">
           {apiResults}
         </div>
