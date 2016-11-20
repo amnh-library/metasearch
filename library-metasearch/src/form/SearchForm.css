@@ -18,6 +18,7 @@
 
 .input-container input[type=text] {
   width: 70%;
+  border: 2px solid #808080;
 }
 
 .input-container input[type=submit] {
