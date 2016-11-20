@@ -34,14 +34,16 @@ export default class Container extends Component {
   }
 
   handleSearchSubmit = term => {
-    console.log('handleSearchSubmit too ' + term);
-    this.setState({term});
+    let _this = this;
 
-    let result_count = 0
+    this.setState({term: term});
+
+    let result_count = 0;
+
     Object.keys(apis).forEach((api, i) => {
       result_count += 1;
       apis[api].run(term).then((result) => {
-        this.setState({
+        _this.setState({
           results: this.state.results.concat([{
             data: result,
             api: api,
@@ -53,7 +55,7 @@ export default class Container extends Component {
     });
 
     this.setState({result_count: this.state.result_count + result_count});
-  }
+  };
 
   renderApiResultWrapper(result) {
     let onCloseResult = () => this.setState({
@@ -66,6 +68,8 @@ export default class Container extends Component {
       return (
         <ResultsWrapper
           key={result.result_id}
+          term={this.state.term}
+          api={result.api}
           onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>
       );
     }
@@ -74,28 +78,28 @@ export default class Container extends Component {
   renderApiResult(result) {
     switch (result.api) {
       case 'biodiversity':
-        return <BiodiversityResults term={result.term} results={result.data}/>
+        return <BiodiversityResults result={result.data}/>
       case 'wiki':
-        return <WikiResults term={result.term} result={result.data}/>
+        return <WikiResults result={result.data}/>
       default:
         return null;
     }
   }
 
   render() {
-    var apiResults = [];
-    this.state.results.forEach(r =>
-      apiResults.unshift(this.renderApiResultWrapper(r)
-    ))
+    let apiResults = [];
+
+    this.state.results.forEach(r => {
+      apiResults.unshift(this.renderApiResultWrapper(r));
+    });
 
     return (
       <div>
-        <SearchForm handleSubmit={this.handleSearchSubmit} />
+        <SearchForm handleSubmit={this.handleSearchSubmit}/>
         <div className="container">
           {apiResults}
         </div>
       </div>
     );
   }
-
 }

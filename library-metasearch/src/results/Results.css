@@ -22,4 +22,5 @@
   border: 1px solid #004bb4;
   display: flex;
   flex-direction: row;
+  text-transform: capitalize;
 }

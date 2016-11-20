@@ -2,13 +2,12 @@ import React from 'react';
 
 export default class BiodiversityResults extends React.Component {
   render() {
-    let results = this.props.results || [];
-    let title_items = results.title_items || [];
+    let result = this.props.result || [];
+    let title_items = result.title_items || [];
 
     if (title_items.length > 0) {
       return (
         <div>
-          <h3>Biodiversity Results: {this.props.term}</h3>
           {title_items.map(function (title_item, index) {
             return (
               <div key={title_item.title_id}>
