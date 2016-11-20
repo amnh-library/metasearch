@@ -1,6 +1,4 @@
 import React, { Component } from "react"
-import BiodiversityClient from '../client/BiodiversityClient'
-
 
 export default class SearchForm extends Component {
   handleSubmit = event => {

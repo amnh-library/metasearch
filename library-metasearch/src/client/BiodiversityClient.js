@@ -19,8 +19,8 @@ function getSubjectNames(xml) {
   );
 }
 
-function run(term, callback) {
-  $.ajax({
+function run(term) {
+  return $.ajax({
     url: API_BASE_URL,
     method: 'GET',
     data: {
@@ -29,11 +29,13 @@ function run(term, callback) {
       apikey: API_KEY
     },
     dataType: 'xml',
-    success: function (xml, textStatus, jqXHR) {
-      let subject_names = getSubjectNames(xml);
-      callback({subject_names: subject_names});
-    }
+  }).then((xml, textStatus, jqXHR) => {
+      return {
+        subject_names: getSubjectNames(xml)
+      };
   });
 }
 
-export default run;
+export default {
+    run: run
+};

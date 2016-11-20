@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SearchForm from './form/Form'
+import Container from './container/Container'
 import './App.css'
 
 class App extends Component {
@@ -11,8 +11,7 @@ class App extends Component {
           <h2>~Metasearch~</h2>
         </div>
         <div>
-          <SearchForm />
-          {/* <Container /> */}
+          <Container />
         </div>
       </div>
     )
