@@ -11,6 +11,7 @@ import './Container.css'
 import $ from 'jquery'
 import SierraClient from '../client/SierraClient.js'
 import SierraResults from '../results/SierraResults.js'
+import Masonry from 'react-masonry-component'
 
 /**
  * Container component = stateful
@@ -27,6 +28,10 @@ const apis = {
   'wikipedia': WikiClient,
   'sierra': SierraClient,
   'archives': ArchivesClient,
+};
+
+const masonryOptions = {
+  transitionDuration: 0,
 };
 
 export default class Container extends Component {
@@ -137,15 +142,15 @@ export default class Container extends Component {
                     name={apiName}
                     type="checkbox"
                     defaultChecked={this.state.selectedApis[apiName]}
-                    onChange={this.handleInputChange.bind(this, {apiName})} />
+                    onChange={this.handleInputChange.bind(this, {apiName})}/>
                 </div>
               )
             })
           }
         </div>
-        <div className="container">
+        <Masonry id="container" options={masonryOptions}>
           {apiResults}
-        </div>
+        </Masonry>
       </div>
     );
   }

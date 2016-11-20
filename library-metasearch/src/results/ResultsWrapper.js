@@ -4,7 +4,7 @@ import './Results.css';
 export default class ResultsWrapper extends React.Component {
   render() {
     return (
-      <div className="results-wrapper horizontal-flex grid-item latest-results">
+      <div className="results-wrapper grid-item latest-results">
         <div className="results-body">
           <button className="close-btn" onClick={this.props.onClose}>x</button>
           <h3>
