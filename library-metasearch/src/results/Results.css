@@ -19,7 +19,7 @@
 .results-wrapper {
   margin: 15px;
   padding: 10px;
-  border: 1px solid #004bb4;
+  border: 3px solid;
   max-width: 45%;
   max-height: 45%
 }
@@ -31,6 +31,9 @@
 
 .results-body {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .results-wrapper h3 {
@@ -51,4 +54,16 @@
   .horizontal-flex {
     flex-direction: column;
   }
+}
+
+.latest-results {
+  border-color: #114fe0;
+}
+
+.prev-results {
+  border-color: #3db1ff;
+}
+
+.old-results {
+  border-color: #b5e1ff;
 }
