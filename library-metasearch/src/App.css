@@ -1,6 +1,5 @@
 * {
   font-family: 'Open sans', sans-serif;
-
 }
 
 .App {
@@ -15,7 +14,8 @@
 .App-header {
   background: #004bb4;
   display: flex;
-  flex-wrap: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 
@@ -40,5 +40,19 @@
 @media all and (max-width: 500px) {
   .App-header-img {
     display: none;
+  }
+
+  .App-header {
+    flex-direction: column;
+  }
+}
+
+@media all and (max-width: 900px) {
+  .App-header-img {
+    display: none;
+  }
+
+  .App-header {
+    flex-direction: column;
   }
 }
