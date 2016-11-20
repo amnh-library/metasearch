@@ -74,7 +74,7 @@ export default class Container extends Component {
       case 'biodiversity':
         return <BiodiversityResults term={result.term} results={result.data}/>
       case 'wiki':
-        return <WikiResults term={result.term} results={result.data}/>
+        return <WikiResults term={result.term} result={result.data}/>
       default:
         return null;
     }
