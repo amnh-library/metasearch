@@ -19,7 +19,7 @@
 .results-wrapper {
   margin: 15px;
   padding: 10px;
-  border: 1px solid #004bb4;
+  border: 3px solid;
   max-width: 45%;
   max-height: 45%
 }
@@ -53,4 +53,16 @@
     width: 80%;
     height: 100%;
   }
+}
+
+.latest-results {
+  border-color: #114fe0;
+}
+
+.prev-results {
+  border-color: #3db1ff;
+}
+
+.old-results {
+  border-color: #b5e1ff;
 }

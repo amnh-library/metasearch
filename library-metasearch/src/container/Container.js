@@ -43,6 +43,8 @@ export default class Container extends Component {
   handleSearchSubmit = term => {
     let _this = this;
 
+    this.downgradeResultColors();
+
     this.setState({term: term});
 
     let result_count = 0;
@@ -112,5 +114,10 @@ export default class Container extends Component {
         </div>
       </div>
     );
+  }
+
+  downgradeResultColors() {
+    $('.prev-results').removeClass('prev-results').addClass('old-results');
+    $('.latest-results').removeClass('latest-results').addClass('prev-results');
   }
 }
