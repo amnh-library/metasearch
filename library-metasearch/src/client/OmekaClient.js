@@ -9,7 +9,6 @@ function run(term) {
   }).then(function (data, textStatus) {
     if (data && data.length > 0) {
       return data.slice(0,MAX_RESULTS).map( function(result) {
-        console.log(result);
         return {
           url: result,
         };
