@@ -11,7 +11,7 @@ class App extends Component {
           <h2 className="App-title">Library Metasearch</h2>
           <h2 className="App-title">🕵 📖</h2>
         </div>
-        <div className="App-container">
+        <div>
           <Container />
         </div>
       </div>

@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import SearchForm from '../form/SearchForm'
-import BiodiversityClient from '../client/BiodiversityClient'
-import BiodiversityResults from '../results/BiodiversityResults'
-import { run as biodiversityRun } from '../client/BiodiversityClient'
-
+import BiodiversityResults from '../results/BiodiversityResults.js'
+import BiodiversityClient from '../client/BiodiversityClient.js'
 
 /*
 * Container component = stateful
@@ -14,37 +12,55 @@ import { run as biodiversityRun } from '../client/BiodiversityClient'
 * - child components are stateless
 */
 
+const apis = {
+  biodiversity: {
+    client: BiodiversityClient,
+  }
+};
 
 export default class Container extends Component {
   constructor() {
-    super()
+    super();
     // data received from api calls goes here, initially empty
     this.state = {
       term: '',
-      results: {}
-    }
+      results: [],
+    };
   }
 
   handleSearchSubmit = term => {
-    console.log('handleSearchSubmit too ' + term)
-    // this.setState({ term })
-    // api functions called here, update state based on results (or error)
-    // apiRun(term).then(this.setState{ results })
+    console.log('handleSearchSubmit too ' + term);
+    this.setState({ term });
+
+    Object.keys(apis).forEach(api => {
+      apis[api].client.run(term).then((result) => {
+        this.setState({
+          results: [{
+            data: result,
+            api: api,
+            term: term,
+          }]
+        });
+      });
+    });
+  }
+
+  renderApiResult(result) {
+    switch (result.api) {
+      case 'biodiversity':
+        return <BiodiversityResults term={result.term} key={result.api} results={result.data}/>
+    }
   }
 
   render() {
-    const styles = {
-      container: {
-        display: "flex",
-        flexDirection: "column"
-      }
-    }
+    const styles = {};
+
     return (
       <div style={styles.container}>
         <SearchForm handleSubmit={this.handleSearchSubmit} />
-        <BiodiversityResults term={this.state.value} results={this.state.results.biodiversity}/>
+        {this.state.results.map(this.renderApiResult)}
       </div>
-    )
+    );
   }
 
 }
