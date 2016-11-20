@@ -3,6 +3,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
 
 @media all and (max-width: 500px) {

@@ -7,7 +7,7 @@
   background: #004bb4;
   border: none;
   color: #fff;
-  align-self: baseline;
+  align-self: flex-start;
   cursor: pointer;
   margin-left: 2em;
 }
@@ -35,4 +35,10 @@
 .horizontal-flex {
   display: flex;
   flex-direction: row;
+}
+
+@media all and (max-width: 600px) {
+  .horizontal-flex {
+    flex-direction: column;
+  }
 }
