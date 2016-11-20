@@ -38,10 +38,10 @@ export default class Container extends Component {
       results: [],
       result_count: 0,
       selectedApis: {
-        'biodiversity library': false,
-        'wikipedia': false,
-        'sierra': false,
-        'archives': false
+        'biodiversity library': true,
+        'wikipedia': true,
+        'sierra': true,
+        'archives': true
       }
     };
   }
