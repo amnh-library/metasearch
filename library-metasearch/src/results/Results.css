@@ -116,3 +116,15 @@
   margin-left: -2em;
   padding-right: 1em;
 }
+
+.omeka {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.omeka img {
+  margin: 3px;
+  float: left;
+}

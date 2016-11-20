@@ -7,6 +7,8 @@ import WikiResults from '../results/WikiResults.js'
 import WikiClient from '../client/WikiClient.js'
 import ArchivesResults from '../results/ArchivesResults.js'
 import ArchivesClient from '../client/ArchivesClient.js'
+import OmekaResults from '../results/OmekaResults.js'
+import OmekaClient from '../client/OmekaClient.js'
 import './Container.css'
 import $ from 'jquery'
 import SierraClient from '../client/SierraClient.js'
@@ -28,6 +30,7 @@ const apis = {
   'wikipedia': WikiClient,
   'sierra': SierraClient,
   'archives': ArchivesClient,
+  'omeka': OmekaClient,
 };
 
 const masonryOptions = {
@@ -46,7 +49,8 @@ export default class Container extends Component {
         'biodiversity library': true,
         'wikipedia': true,
         'sierra': true,
-        'archives': true
+        'archives': true,
+        'omeka': true,
       }
     };
   }
@@ -107,6 +111,8 @@ export default class Container extends Component {
         return <SierraResults results={result.data} term={result.term}/>
       case 'archives':
         return <ArchivesResults results={result.data}/>
+      case 'omeka':
+        return <OmekaResults results={result.data}/>
       default:
         return null;
     }
