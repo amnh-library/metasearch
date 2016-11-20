@@ -53,10 +53,11 @@ function parseItem(title, xml) {
     let $item = $items.first();
 
     return {
-      title_id: title.title_id,
-      short_title: title.short_title,
       item_thumbnail_url: $item.find('ItemThumbUrl').text(),
+      short_title: title.short_title,
+      title_id: title.title_id,
       title_url: $item.find('TitleUrl').text(),
+      year: $item.find('Year').text(),
     };
   } else {
     return null;

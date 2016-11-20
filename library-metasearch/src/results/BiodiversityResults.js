@@ -10,6 +10,8 @@ export default class BiodiversityResults extends React.Component {
       return (
         <div className="horizontal-flex">
           {title_items.map(function (title_item, index) {
+            let year = title_item.year ? " (" + title_item.year + ")" : null;
+
             let image = title_item.item_thumbnail_url ? (
               <a href={title_item.title_url}>
                 <img src={title_item.item_thumbnail_url} alt={title_item.short_title}/>
@@ -25,6 +27,7 @@ export default class BiodiversityResults extends React.Component {
                 <a href={title_item.title_url}>
                   {title_item.short_title}
                 </a>
+                {year}
               </div>
             );
           })}
