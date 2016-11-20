@@ -9,8 +9,6 @@ export default class SearchForm extends Component {
 
     let _this = this;
 
-    alert("~~~~ submitted ~~~~ " + this.state.value)
-
     run(
       this.state.value,
       function (data) {
