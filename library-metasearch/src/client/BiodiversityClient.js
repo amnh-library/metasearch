@@ -49,7 +49,7 @@ function parseTitleItem(subject_title, xml) {
 
   let $items = $xml.find('Result Item');
 
-  if ($items.length == 1) {
+  if ($items.length === 1) {
     let $item = $items.first();
 
     return {
@@ -64,7 +64,7 @@ function parseTitleItem(subject_title, xml) {
 }
 
 function fetchSubjectTitles(subject_names) {
-  if (subject_names) {
+  if (subject_names.length > 0) {
     return $.ajax({
       url: API_BASE_URL,
       method: 'GET',
@@ -80,20 +80,19 @@ function fetchSubjectTitles(subject_names) {
 
       return Promise.all(title_item_promises).then(title_items => {
         return {
-          subject_titles: subject_titles,
           title_items: title_items,
         };
       });
-
+    }).catch(() => {
+      return Promise.resolve({});
     });
   } else {
-    // todo empty promise
-    return {};
+    return Promise.resolve({});
   }
 }
 
 function fetchTitleItems(subject_titles) {
-  if (subject_titles) {
+  if (subject_titles.length > 0) {
     return subject_titles.map(function (subject_title) {
       return fetchTitleItem(subject_title);
     });
@@ -115,9 +114,11 @@ function fetchTitleItem(subject_title) {
       dataType: 'xml',
     }).then((xml, textStatus, jqXHR) => {
       return parseTitleItem(subject_title, xml);
+    }).catch(() => {
+      return Promise.resolve({});
     });
   } else {
-    return {};
+    return Promise.resolve({});
   }
 }
 
@@ -134,12 +135,9 @@ function run(term) {
       dataType: 'xml',
     }).then((xml, textStatus, jqXHR) => {
       let subject_names = parseSubjectNames(xml);
-      return fetchSubjectTitles(subject_names).then(result => {
-        return $.extend(
-          {subject_names: subject_names},
-          result
-        );
-      });
+      return fetchSubjectTitles(subject_names);
+    }).catch(() => {
+      return Promise.resolve({});
     });
   } else {
     // todo empty promise
