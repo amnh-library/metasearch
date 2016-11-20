@@ -74,7 +74,7 @@ export default class Container extends Component {
     } else {
       return (
         <ResultsWrapper
-          key={result.result_id}
+          key={result.result_id * Math.random()}
           term={result.term}
           api={result.api}
           onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>

@@ -4,14 +4,16 @@ import './Results.css';
 export default class ResultsWrapper extends React.Component {
   render() {
     return (
-      <div className="results-wrapper horizontal-flex grid-item">
-        <div className="results-body">
-          <h3>
-            {this.props.api}: {this.props.term}
-          </h3>
-          {this.props.children}
+      <div className="results-wrapper horizontal-flex">
+        <div className="button-wrapper">
+          <button className="close-btn" onClick={this.props.onClose}>x</button>
+          <div>
+            <h3>
+              {this.props.api}: {this.props.term}
+            </h3>
+            {this.props.children}
+          </div>
         </div>
-        <button className="close-btn" onClick={this.props.onClose}>x</button>
       </div>
     );
   }
