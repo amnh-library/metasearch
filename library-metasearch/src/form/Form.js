@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import run from '../client/BiodiversityClient';
 import BiodiversityResults from '../results/BiodiversityResults'
+import run2 from '../client/WikiClient';
+import WikiResults from '../results/WikiResults'
 
 
 export default class SearchForm extends Component {
@@ -19,6 +21,17 @@ export default class SearchForm extends Component {
         });
       }
     );
+
+    run2(
+      this.state.value,
+      function(data) {
+        _this.setState({
+          results: {
+            wiki: data
+          }
+        });
+      }
+    );
   }
 
   handleChange = event => {
@@ -29,7 +42,8 @@ export default class SearchForm extends Component {
     super(props)
     this.state = {
       results: {
-        biodiversity: {}
+        biodiversity: {},
+        wiki: {}
       },
       value: ""
     };
@@ -63,6 +77,7 @@ export default class SearchForm extends Component {
           <input type="submit" value="Submit" style={styles.button} />
         </form>
         <BiodiversityResults term={this.state.value} results={this.state.results.biodiversity}/>
+        <WikiResults term={this.state.value} results={this.state.results.wiki}/>
       </div>
     )
   }
