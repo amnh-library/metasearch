@@ -158,17 +158,21 @@ function searchAuthor(term) {
       (xml, textStatus, jqXHR) => {
         let creators = parseCreators(xml);
 
-        return Promise.all(fetchTitlesForAuthors(creators)).then(results => {
-          let merged_items = [];
+        return Promise.all(fetchTitlesForAuthors(creators))
+          .then(results => {
+            let merged_items = [];
 
-          $.each(results, function (index, result) {
-            if (!$.isEmptyObject(result) && result.title_items.length > 0) {
-              $.merge(merged_items, result.title_items);
-            }
+            $.each(results, function (index, result) {
+              if (!$.isEmptyObject(result) && result.title_items.length > 0) {
+                $.merge(merged_items, result.title_items);
+              }
+            });
+
+            return {title_items: merged_items};
+          })
+          .catch(() => {
+            return Promise.resolve({});
           });
-
-          return {title_items: merged_items};
-        });
       });
   } else {
     return Promise.resolve({});
