@@ -2,6 +2,11 @@
   font-family: 'Open sans', sans-serif;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -11,13 +16,16 @@
   margin: 0.5em;
 }
 
+.App-container {
+  width: 100%;
+}
+
 .App-header {
   background: #004bb4;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-
 
 .App-header-img {
   border-radius: 50%;

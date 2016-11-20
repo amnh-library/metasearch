@@ -20,6 +20,7 @@
   margin: 1em 3em;
   padding: 1em;
   border: 1px solid #004bb4;
+  max-width: 45%;
 }
 
 .results-wrapper h3 {

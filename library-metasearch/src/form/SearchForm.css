@@ -4,7 +4,9 @@
 
 .search-term-input {
   padding: .5em;
-  margin-bottom: 2em;
+  margin: 2em;
+  font-size: 14pt;
+  width: 80%;
 }
 
 .button {
