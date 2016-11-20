@@ -1,16 +1,19 @@
 import React from 'react';
 
 export default class WikiResults extends React.Component {
-
-
   render() {
     let result = this.props.result || {};
-    let image = result.image_url ? (
+
+    let image_url = result.image_url ||
+      "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2@2x.png";
+
+    let image = result.page_url ? (
       <a href={result.page_url}>
-        <img id="wiki-img" src={result.image_url} alt={result.title}/>
-      </a>) : (
-        <img id="wiki-img" src="https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2@2x.png" />
-      )
+        <img src={image_url} alt={result.title}/>
+      </a>
+    ) : (
+      <img src={image_url} alt={result.title}/>
+    );
 
     return (
       <div>
