@@ -12,6 +12,7 @@ class App extends Component {
         </div>
         <div>
           <SearchForm />
+          {/* <Container /> */}
         </div>
       </div>
     )
