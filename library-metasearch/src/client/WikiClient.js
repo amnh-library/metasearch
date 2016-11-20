@@ -37,11 +37,13 @@ function run(term) {
 
       var pages = data.query.pages;
       var top_page = getFirstField(pages);
+      var cleaned_snippet = top_hit.snippet.replace(/(<([^>]+)>)/ig,"");
 
       var base_data = {
         title: top_hit.title,
         categories: top_page.categories,
         page_url: 'http://en.wikipedia.org/wiki/' + wiki_title,
+        snippet: cleaned_snippet,
       };
 
       if (top_page.images && top_page.images.length > 0) {
