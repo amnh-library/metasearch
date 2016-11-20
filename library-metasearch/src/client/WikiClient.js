@@ -31,16 +31,31 @@ function run(term) {
     return wikiGet(
       {'action': 'query', 'prop': 'images|categories', 'format': 'json', 'titles': wiki_title}
     ).then(function(data, textStatus) {
+      if (data.query.pages.length === 0) {
+        return {}
+      }
+
       var pages = data.query.pages;
       var top_page = getFirstField(pages);
-      var image_title = top_page.images[0].title;
 
-      return wikiGet(
-        {'action': 'query', 'titles': image_title, 'prop': 'imageinfo', 'iiprop': 'url', 'format': 'json'}
-      ).then(function(data, textStatus) {
-        var url = getFirstField(data.query.pages).imageinfo[0].url;
-        return {title: top_hit.title, categories: top_page.categories, image_url: url};
-      });
+      var base_data = {
+        title: top_hit.title,
+        categories: top_page.categories,
+        page_url: 'http://en.wikipedia.org/wiki/' + wiki_title,
+      };
+
+      if (top_page.images && top_page.images.length > 0) {
+        var image_title = top_page.images[0].title;
+
+        return wikiGet(
+          {'action': 'query', 'titles': image_title, 'prop': 'imageinfo', 'iiprop': 'url', 'format': 'json'}
+        ).then(function(data, textStatus) {
+          var url = getFirstField(data.query.pages).imageinfo[0].url;
+          return $.extend(base_data, {image_url: url});
+        });
+      } else {
+        return base_data;
+      }
     });
   });
 }
