@@ -1,16 +1,18 @@
 import $ from 'jquery';
-const API_BASE_URL = 'http://localhost:3001/sierra/';
+const API_BASE_URL = 'https://fast-refuge-26073.herokuapp.com/sierra/';
 
 function run(term) {
     return $.ajax({
-        method: 'post',
-        url: API_BASE_URL + "bibs/query",
-        offset: 0,
-        limit: 1,
+        method: 'get',
+        url: API_BASE_URL + "query",
+        data: {
+            offset: 0,
+            limit: 2,
+            term: term,
+        },
         dataType: 'jsonp'
     }).then((data, textStatus, jqXHR) => {
-        //return data;
-        return null;
+        return data;
     });
 }
 
