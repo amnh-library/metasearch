@@ -46,7 +46,7 @@
 
 @media all and (min-width: 600px) and (max-width: 2000px) {
   .grid-item {
-    width: 500px;
-    height: 300px;
+    width: 600px;
+    height: 400px;
   }
 }
