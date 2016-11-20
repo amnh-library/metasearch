@@ -1,15 +1,12 @@
 .close-btn {
-  width: 2em;
-  height: 2em;
-  text-align: center;
-  border-radius: 50rem;
-  align-self: flex-end;
-  background: #004bb4;
-  border: none;
-  color: #fff;
-  align-self: flex-end;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #ffffff;
   cursor: pointer;
-  margin-left: 2em;
+  font-size: 14px;
+  height: 2em;
+  width: 2em;
 }
 
 .close-btn:hover {
@@ -29,12 +26,14 @@
 
 .results-body {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
 }
 
 .results-wrapper h3 {
+  margin-top: 0;
+  position: relative;
+}
+
+.results-wrapper h3 span {
   text-transform: capitalize;
 }
 

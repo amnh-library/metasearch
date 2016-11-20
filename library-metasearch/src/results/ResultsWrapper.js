@@ -6,9 +6,10 @@ export default class ResultsWrapper extends React.Component {
     return (
       <div className="results-wrapper grid-item {this.props.class}">
         <div className="results-body">
-          <button className="close-btn" onClick={this.props.onClose}>x</button>
           <h3>
-            {this.props.api}: {this.props.term}
+            <span>{this.props.api}: </span>
+            {this.props.term}
+            <button className="close-btn" onClick={this.props.onClose}>&times;</button>
           </h3>
           {this.props.children}
         </div>
