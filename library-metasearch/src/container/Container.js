@@ -19,10 +19,11 @@ import SierraResults from '../results/SierraResults.js'
  * - child components are stateless
  */
 
+// names of API clients are used for printed name in search results
 const apis = {
-  biodiversity: BiodiversityClient,
-  wikipedia: WikiClient,
-  sierra: SierraClient,
+  'biodiversity library': BiodiversityClient,
+  'wikipedia': WikiClient,
+  'sierra': SierraClient,
 };
 
 export default class Container extends Component {
@@ -43,13 +44,13 @@ export default class Container extends Component {
 
     let result_count = 0;
 
-    Object.keys(apis).forEach((api, i) => {
+    Object.keys(apis).forEach((api_name, i) => {
       result_count += 1;
-      apis[api].run(term).then((result) => {
+      apis[api_name].run(term).then((result) => {
         _this.setState({
           results: this.state.results.concat([{
             data: result,
-            api: api,
+            api: api_name,
             term: term,
             result_id: this.state.result_count + i,
           }])
@@ -80,7 +81,7 @@ export default class Container extends Component {
 
   renderApiResult(result) {
     switch (result.api) {
-      case 'biodiversity':
+      case 'biodiversity library':
         return <BiodiversityResults result={result.data}/>
       case 'wikipedia':
         return <WikiResults result={result.data}/>
