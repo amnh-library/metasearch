@@ -70,7 +70,7 @@ export default class SearchForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <div>
             <label style={styles.label}>
-              Search for something:
+              Search for something
             </label>
           </div>
           <input value={this.state.value} style={styles.input} type="text" name="search" onChange={this.handleChange} />

@@ -8,3 +8,13 @@ body {
   margin: 5px;
   max-width: 45%;
 }
+
+.App-container {
+  width: 100%;
+}
+
+.search-term-input {
+  font-size: 14pt;
+  width: 80%;
+  margin: 5px;
+}
