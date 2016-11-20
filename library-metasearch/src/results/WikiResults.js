@@ -7,7 +7,9 @@ export default class WikiResults extends React.Component {
     return (
       <div>
         <div>
-          <img id="wiki-img" src={result.image_url} alt={result.title}/>
+          <a href={result.page_url}>
+            <img id="wiki-img" src={result.image_url} alt={result.title}/>
+          </a>
           <div>
             <a href={result.page_url}>
               {result.title}

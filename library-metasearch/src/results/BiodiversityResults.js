@@ -7,12 +7,12 @@ export default class BiodiversityResults extends React.Component {
 
     if (title_items.length > 0) {
       return (
-        <div>
+        <div className="horizontal-flex">
           {title_items.map(function (title_item, index) {
             return (
-              <div key={title_item.title_id}>
+              <div className="book-result" key={title_item.title_id}>
                 <a href="title_item.title_url">
-                  <img src={title_item.item_thumbnail_url} height="150" alt={title_item.short_title}/>
+                  <img src={title_item.item_thumbnail_url} alt={title_item.short_title}/>
                   <br/>
                   {title_item.short_title}
                 </a>

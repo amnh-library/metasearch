@@ -20,10 +20,18 @@
   margin: 1em 3em;
   padding: 1em;
   border: 1px solid #004bb4;
-  display: flex;
-  flex-direction: row;
 }
 
 .results-wrapper h3 {
   text-transform: capitalize;
+}
+
+.results-wrapper img {
+  width: auto;
+  height: 150px;
+}
+
+.horizontal-flex {
+  display: flex;
+  flex-direction: row;
 }
