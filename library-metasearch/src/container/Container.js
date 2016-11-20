@@ -5,6 +5,7 @@ import BiodiversityResults from '../results/BiodiversityResults.js'
 import BiodiversityClient from '../client/BiodiversityClient.js'
 import WikiResults from '../results/WikiResults.js'
 import WikiClient from '../client/WikiClient.js'
+import './Container.css'
 
 /*
 * Container component = stateful
@@ -72,17 +73,17 @@ export default class Container extends Component {
   }
 
   render() {
-    const styles = {};
-
     var apiResults = [];
     this.state.results.forEach(r =>
-        apiResults.unshift(this.renderApiResultWrapper(r)
+      apiResults.unshift(this.renderApiResultWrapper(r)
     ))
 
     return (
-      <div style={styles.container}>
+      <div>
         <SearchForm handleSubmit={this.handleSearchSubmit} />
-        {apiResults}
+        <div className="container">
+          {apiResults}
+        </div>
       </div>
     );
   }
