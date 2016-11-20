@@ -21,7 +21,7 @@
   border: 1px solid blue;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 600px) {
   .container {
     display: flex;
     flex-direction: column;

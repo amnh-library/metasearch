@@ -56,7 +56,7 @@ body {
   }
 }
 
-@media all and (max-width: 900px) {
+@media all and (max-width: 1200px) {
   .App-header-img {
     display: none;
   }
