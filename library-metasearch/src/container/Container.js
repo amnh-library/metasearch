@@ -10,7 +10,7 @@ import $ from 'jquery'
 import SierraClient from '../client/SierraClient.js'
 import SierraResults from '../results/SierraResults.js'
 
-/*
+/**
  * Container component = stateful
  * - has all the api calls as functions (imported from client components)
  * - passes the function that does the search to the SearchForm
@@ -21,7 +21,7 @@ import SierraResults from '../results/SierraResults.js'
 
 const apis = {
   biodiversity: BiodiversityClient,
-  wiki: WikiClient,
+  wikipedia: WikiClient,
   sierra: SierraClient,
 };
 
@@ -71,7 +71,7 @@ export default class Container extends Component {
       return (
         <ResultsWrapper
           key={result.result_id}
-          term={this.state.term}
+          term={result.term}
           api={result.api}
           onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>
       );
@@ -82,7 +82,7 @@ export default class Container extends Component {
     switch (result.api) {
       case 'biodiversity':
         return <BiodiversityResults result={result.data}/>
-      case 'wiki':
+      case 'wikipedia':
         return <WikiResults result={result.data}/>
       case 'sierra':
         return <SierraResults results={result.data}/>
