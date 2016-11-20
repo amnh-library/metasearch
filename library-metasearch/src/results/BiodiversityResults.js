@@ -9,11 +9,16 @@ export default class BiodiversityResults extends React.Component {
       return (
         <div className="horizontal-flex">
           {title_items.map(function (title_item, index) {
+            let image = title_item.item_thumbnail_url ? (
+              <a href={title_item.title_url}>
+                <img src={title_item.item_thumbnail_url} alt={title_item.short_title}/>
+              </a>
+            ) : null;
+
             return (
               <div className="book-result" key={title_item.title_id}>
-                <a href="title_item.title_url">
-                  <img src={title_item.item_thumbnail_url} alt={title_item.short_title}/>
-                  <br/>
+                {image}
+                <a href={title_item.title_url}>
                   {title_item.short_title}
                 </a>
               </div>
