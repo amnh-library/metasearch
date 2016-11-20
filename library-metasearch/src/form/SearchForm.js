@@ -4,10 +4,9 @@ import BiodiversityClient from '../client/BiodiversityClient'
 
 export default class SearchForm extends Component {
   handleSubmit = event => {
-    alert("~~~~ submitted ~~~~ " + this.state.value)
-    this.props.handleSearchSubmit(this.state.)
+    console.log('SEARCH FORM SUBMIT')
     event.preventDefault()
-
+    this.props.handleSubmit(this.state.value)
   }
 
   handleChange = event => {
