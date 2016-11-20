@@ -146,6 +146,7 @@ export default class Container extends Component {
       <div>
         <SearchForm handleSubmit={this.handleSearchSubmit}/>
         <div className="api-select">
+          <strong>SELECT SOURCES:</strong>
           {
             Object.keys(apis).map((apiName, idx) => {
               return (
