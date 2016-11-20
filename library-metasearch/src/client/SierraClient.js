@@ -7,7 +7,7 @@ function run(term) {
         url: API_BASE_URL + "query",
         data: {
             offset: 0,
-            limit: 2,
+            limit: 5,
             term: term,
         },
         dataType: 'jsonp'
