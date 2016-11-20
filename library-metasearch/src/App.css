@@ -14,16 +14,27 @@
 
 .App-header {
   background: #004bb4;
-  width: 50%;
+  display: flex;
+  flex-wrap: row wrap;
 }
 
+
 .App-header-img {
-  padding: 1em;
   border-radius: 50%;
+  margin: 2em 2em .5em -4em;
+  height: 5em;
+  z-index: -1;
+}
+
+.App-header-logo {
+  margin: 2em 25em 2em 2em;
+  width: 35%;
 }
 
 .App-title {
   color: white;
+  margin-right: 1em;
+  z-index: 1;
 }
 
 @media all and (max-width: 500px) {
