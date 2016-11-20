@@ -8,6 +8,13 @@ body {
   padding: 0;
 }
 
+a, a:focus, a:visited {
+  color: #808080;
+}
+a:hover {
+  color: #e67d17;
+}
+
 .App {
   text-align: center;
   display: flex;
