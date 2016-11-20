@@ -21,7 +21,7 @@ export default class BiodiversityResults extends React.Component {
             );
 
             return (
-              <div key={title_item.title_id}>
+              <div className="sub-item" key={title_item.title_id}>
                 {image}
                 <br/>
                 <a href={title_item.title_url}>

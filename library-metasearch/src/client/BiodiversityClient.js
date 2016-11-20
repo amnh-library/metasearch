@@ -8,7 +8,7 @@ const MAX_CREATORS = 3;
 
 const MAX_SUBJECTS = 20;
 
-const MAX_TITLES = 3;
+const MAX_TITLES = 4;
 
 function parseCreators(xml) {
   let $xml = $(xml);

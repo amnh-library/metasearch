@@ -9,8 +9,10 @@ export default class OmekaResults extends React.Component {
       <div>
         <div className='omeka'>
         {results.map(function (result, index) {
-          return (<div key={result.url}>
-            <img src={result.url} alt="Omeka" />
+          return (<div className='sub-item' key={result.url}>
+            <a href={result.url}>
+              <img src={result.url} alt="Omeka" />
+            </a>
           </div>)
         })}
         </div>

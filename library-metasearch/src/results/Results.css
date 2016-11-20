@@ -61,6 +61,23 @@
 .horizontal-flex {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-items: center;
+}
+
+.sub-item {
+  max-width: 50%;
+  text-align: center;
+}
+
+@media all and (max-width: 900px) {
+  .horizontal-flex {
+    flex-direction: column;
+  }
+
+  .sub-item {
+    max-width: inherit;
+  }
 }
 
 .sierra {
@@ -79,12 +96,6 @@
 
 .sierra .author {
   font-size: 0.8em;
-}
-
-@media all and (max-width: 600px) {
-  .horizontal-flex {
-    flex-direction: column;
-  }
 }
 
 .latest-results {
