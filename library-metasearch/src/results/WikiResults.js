@@ -9,7 +9,7 @@ export default class WikiResults extends React.Component {
         <h3>Wiki Results: {this.props.term}</h3>
         <div>
           <div>{result.title}</div>
-          <img id="wiki-img" src={result.image_url} />
+          <img id="wiki-img" src={result.image_url} alt={result.title}/>
         </div>
       </div>
     );
