@@ -44,7 +44,19 @@
 }
 
 .grid-item {
-  width: 400px;
+  width: 30%;
+}
+
+@media all and (max-width: 900px) {
+  .grid-item {
+    width: 45%;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .grid-item {
+    width: 90%;
+  }
 }
 
 .horizontal-flex {
