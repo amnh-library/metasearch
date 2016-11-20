@@ -93,8 +93,12 @@
 
 .archives .person:before {
   content: "\1F575";
+  margin-left: -2em;
+  padding-right: 1em;
 }
 
 .archives .default:before {
   content: "\1F4DA";
+  margin-left: -2em;
+  padding-right: 1em;
 }
