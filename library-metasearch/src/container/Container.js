@@ -35,22 +35,22 @@ export default class Container extends Component {
     console.log('handleSearchSubmit too ' + term);
     this.setState({ term });
 
-    var result_count = this.state.result_count
-    Object.keys(apis).forEach(api => {
+    let result_count = 0
+    Object.keys(apis).forEach((api, i) => {
+      result_count+=1;
       apis[api].run(term).then((result) => {
         this.setState({
           results: this.state.results.concat([{
             data: result,
             api: api,
             term: term,
-            result_id: result_count,
+            result_id: this.state.result_count + i,
           }])
         });
       });
-      result_count+=1;
     });
 
-    this.setState({result_count: result_count});
+    this.setState({result_count: this.state.result_count + result_count});
   }
 
   renderApiResultWrapper(result) {
@@ -58,7 +58,7 @@ export default class Container extends Component {
       results: this.state.results.filter((r) => r.result_id != result.result_id)
     })
     return <ResultsWrapper
-        key={result.api}
+        key={result.result_id}
         onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>
   }
 
