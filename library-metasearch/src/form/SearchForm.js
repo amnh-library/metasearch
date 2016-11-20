@@ -1,21 +1,20 @@
-import React, { Component } from "react"
+import React, {Component} from "react"
 import './SearchForm.css'
 
 export default class SearchForm extends Component {
   handleSubmit = event => {
-    console.log('SEARCH FORM SUBMIT')
-    event.preventDefault()
-    this.props.handleSubmit(this.state.value)
-  }
+    event.preventDefault();
+    this.props.handleSubmit(this.state.value);
+  };
 
   handleChange = event => {
-    this.setState({ value: event.target.value})
-  }
+    this.setState({value: event.target.value});
+  };
 
   constructor(props) {
-    super(props)
-    this.state = { value: "" }
-    this.handleSubmit = this.handleSubmit.bind(this)
+    super(props);
+    this.state = {value: ""};
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
@@ -23,11 +22,16 @@ export default class SearchForm extends Component {
       <div className="input-container">
         <form onSubmit={this.handleSubmit}>
           <div className="submit">
-            <input className="search-term-input" value={this.state.value} type="text" name="search" onChange={this.handleChange} placeholder="Search for something"/>
-            <input type="submit" value="Submit" className="button" />
+            <input className="search-term-input"
+                   value={this.state.value}
+                   type="text"
+                   name="search"
+                   onChange={this.handleChange}
+                   placeholder="Search Keywords, Topics, Titles, or Authors"/>
+            <input type="submit" value="Submit" className="button"/>
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
