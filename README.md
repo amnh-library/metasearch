@@ -4,7 +4,7 @@ Repo for team One Big Room, working on the [Library Metasearch](https://github.c
 
 Example search terms to try using:
 
-- Hyman, Libbie Henrietta, 1888-1969
-- Whitney South Sea Expedition of the American Museum of Natural History (1920-1941)
-- Akeley, Carl Ethan, 1864-1926
+- Libbie Henrietta Hyman
+- Whitney South Sea Expedition
+- Carl Ethan Akeley
 - Hayden Planetarium
