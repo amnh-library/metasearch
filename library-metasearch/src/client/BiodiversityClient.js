@@ -4,9 +4,24 @@ const API_BASE_URL = 'http://www.biodiversitylibrary.org/api2/httpquery.ashx';
 
 const API_KEY = '4d93133f-aa09-4f77-892b-a40c331628ac';
 
+const MAX_CREATORS = 3;
+
 const MAX_SUBJECTS = 20;
 
 const MAX_TITLES = 3;
+
+function parseCreators(xml) {
+  let $xml = $(xml);
+  let $creators = $xml.find('Result Creator').slice(0, MAX_CREATORS);
+
+  return $.map(
+    $creators,
+    function (creator) {
+      let $creator = $(creator);
+      return $creator.find('CreatorID').text();
+    }
+  );
+}
 
 function parseSubjects(xml) {
   let $xml = $(xml);
@@ -64,6 +79,35 @@ function parseItem(title, xml) {
   }
 }
 
+function fetchTitlesForAuthors(creator_ids) {
+  if (creator_ids.length > 0) {
+    return creator_ids.map(function (creator_id) {
+      return fetchTitlesForAuthor(creator_id);
+    });
+  } else {
+    return Promise.resolve({});
+  }
+}
+
+function fetchTitlesForAuthor(creator_id) {
+  if (creator_id) {
+    return queryBiodiversity(
+      'GetAuthorTitles',
+      {creatorid: creator_id},
+      (xml, textStatus, jqXHR) => {
+        let titles = parseTitles(xml);
+
+        return Promise.all(fetchItemsForTitles(titles)).then(items => {
+          return {
+            title_items: items,
+          };
+        });
+      });
+  } else {
+    return Promise.resolve({});
+  }
+}
+
 function fetchSubjectTitles(subject_names) {
   if (subject_names.length > 0) {
     return queryBiodiversity(
@@ -100,6 +144,31 @@ function fetchItemForTitle(subject_title) {
       {titleid: subject_title.title_id},
       (xml, textStatus, jqXHR) => {
         return parseItem(subject_title, xml);
+      });
+  } else {
+    return Promise.resolve({});
+  }
+}
+
+function searchAuthor(term) {
+  if (term) {
+    return queryBiodiversity(
+      'AuthorSearch',
+      {name: term},
+      (xml, textStatus, jqXHR) => {
+        let creators = parseCreators(xml);
+
+        return Promise.all(fetchTitlesForAuthors(creators)).then(results => {
+          let merged_items = [];
+
+          $.each(results, function (index, result) {
+            if (!$.isEmptyObject(result) && result.title_items.length > 0) {
+              $.merge(merged_items, result.title_items);
+            }
+          });
+
+          return {title_items: merged_items};
+        });
       });
   } else {
     return Promise.resolve({});
@@ -159,8 +228,9 @@ function queryBiodiversity(operation, data, promise) {
 
 function run(term) {
   let searches = [
-    searchSubject(term),
-    searchTitle(term)
+    // searchSubject(term),
+    // searchTitle(term),
+    searchAuthor(term),
   ];
 
   return Promise.all(searches).then(results => {
