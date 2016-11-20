@@ -1,4 +1,5 @@
 import React from 'react';
+import generic_book from '../img/generic-book.png'
 
 export default class BiodiversityResults extends React.Component {
   render() {
@@ -13,11 +14,14 @@ export default class BiodiversityResults extends React.Component {
               <a href={title_item.title_url}>
                 <img src={title_item.item_thumbnail_url} alt={title_item.short_title}/>
               </a>
-            ) : null;
+            ) : (
+              <img src={generic_book} alt={title_item.short_title}/>
+            );
 
             return (
               <div className="book-result" key={title_item.title_id}>
                 {image}
+                <br/>
                 <a href={title_item.title_url}>
                   {title_item.short_title}
                 </a>
