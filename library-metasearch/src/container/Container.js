@@ -3,6 +3,8 @@ import SearchForm from '../form/SearchForm'
 import ResultsWrapper from '../results/ResultsWrapper.js'
 import BiodiversityResults from '../results/BiodiversityResults.js'
 import BiodiversityClient from '../client/BiodiversityClient.js'
+import WikiResults from '../results/WikiResults.js'
+import WikiClient from '../client/WikiClient.js'
 
 /*
 * Container component = stateful
@@ -14,7 +16,8 @@ import BiodiversityClient from '../client/BiodiversityClient.js'
 */
 
 const apis = {
-  biodiversity: BiodiversityClient
+  biodiversity: BiodiversityClient,
+  wiki: WikiClient,
 };
 
 export default class Container extends Component {
@@ -55,7 +58,7 @@ export default class Container extends Component {
       results: this.state.results.filter((r) => r.result_id != result.result_id)
     })
     return <ResultsWrapper
-        key={result.result_id}
+        key={result.api}
         onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>
   }
 
@@ -63,6 +66,8 @@ export default class Container extends Component {
     switch (result.api) {
       case 'biodiversity':
         return <BiodiversityResults term={result.term} results={result.data}/>
+      case 'wiki':
+        return <WikiResults term={result.term} results={result.data}/>
     }
   }
 
