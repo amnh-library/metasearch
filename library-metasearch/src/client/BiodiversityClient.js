@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+const API_BASE_URL = 'http://www.biodiversitylibrary.org/api2/httpquery.ashx';
+
 const API_KEY = '4d93133f-aa09-4f77-892b-a40c331628ac';
 
 const MAX_SUBJECTS = 5;
@@ -19,9 +21,13 @@ function getSubjectNames(xml) {
 
 function run(term, callback) {
   $.ajax({
-    url: 'http://www.biodiversitylibrary.org/api2/httpquery.ashx?op=SubjectSearch' +
-    '&subject=' + (term || 'diptera') +
-    '&apikey=' + API_KEY,
+    url: API_BASE_URL,
+    method: 'GET',
+    data: {
+      op: 'SubjectSearch',
+      subject: term,
+      apikey: API_KEY
+    },
     dataType: 'xml',
     success: function (xml, textStatus, jqXHR) {
       let subject_names = getSubjectNames(xml);
