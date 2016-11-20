@@ -5,7 +5,7 @@ export default class ResultsWrapper extends React.Component {
   render() {
     return (
       <div className="results-wrapper horizontal-flex grid-item">
-        <div>
+        <div className="results-body">
           <h3>
             {this.props.api}: {this.props.term}
           </h3>

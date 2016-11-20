@@ -24,6 +24,10 @@
   max-height: 45%
 }
 
+.results-body {
+  width: 100%;
+}
+
 .results-wrapper h3 {
   text-transform: capitalize;
 }
