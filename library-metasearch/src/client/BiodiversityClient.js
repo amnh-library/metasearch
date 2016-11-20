@@ -228,8 +228,8 @@ function queryBiodiversity(operation, data, promise) {
 
 function run(term) {
   let searches = [
-    // searchSubject(term),
-    // searchTitle(term),
+    searchSubject(term),
+    searchTitle(term),
     searchAuthor(term),
   ];
 
