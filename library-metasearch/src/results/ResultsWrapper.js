@@ -4,7 +4,7 @@ import './Results.css';
 export default class ResultsWrapper extends React.Component {
   render() {
     return (
-      <div className="results-wrapper grid-item {this.props.class}">
+      <div className={"results-wrapper grid-item age-" + this.props.age}>
         <div className="results-body">
           <h3>
             <span>{this.props.api}: </span>

@@ -45,6 +45,7 @@ export default class Container extends Component {
       term: '',
       results: [],
       result_count: 0,
+      result_groups: 1,
       selectedApis: {
         'biodiversity library': true,
         'wikipedia': true,
@@ -63,6 +64,7 @@ export default class Container extends Component {
     this.setState({term: term});
 
     let result_count = 0;
+    let result_group = this.state.result_groups + 1;
 
     Object.keys(apis)
     .filter(api => this.state.selectedApis[api])
@@ -75,12 +77,16 @@ export default class Container extends Component {
             api: api_name,
             term: term,
             result_id: this.state.result_count + i,
+            result_group: result_group,
           }])
         });
       });
     });
 
-    this.setState({result_count: this.state.result_count + result_count});
+    this.setState({
+      result_count: this.state.result_count + result_count,
+      result_groups: result_group,
+    });
   };
 
   renderApiResultWrapper(result) {
@@ -95,6 +101,7 @@ export default class Container extends Component {
         <ResultsWrapper
           key={result.result_id * Math.random()}
           term={result.term}
+          age={result.result_group % 5}
           api={result.api}
           onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>
       );

@@ -16,8 +16,16 @@
 .results-wrapper {
   margin: 15px;
   padding: 10px;
-  border: 3px solid;
+  border: 2px solid;
+  border-radius: 3px;
+  border-color: #c6d6fb;
 }
+
+.age-0 { border-color: rgba(219, 50, 50, 1); }
+.age-1 { border-color: rgba(239, 57, 203, 1); }
+.age-2 { border-color: rgba(17, 79, 224, 1); }
+.age-3 { border-color: rgba(255, 255, 35, 1); }
+.age-4 { border-color: rgba(155, 255, 56, 1); }
 
 .button-wrapper {
   display: flex;
@@ -98,16 +106,11 @@
   font-size: 0.8em;
 }
 
-.latest-results {
-  border-color: #114fe0;
-}
 
-.prev-results {
-  border-color: #3db1ff;
-}
-
-.old-results {
-  border-color: #b5e1ff;
+@media all and (max-width: 600px) {
+  .horizontal-flex {
+    flex-direction: column;
+  }
 }
 
 .archives {
