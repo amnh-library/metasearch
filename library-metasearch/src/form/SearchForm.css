@@ -2,16 +2,21 @@
   margin: 4em;
 }
 
-.search-term-input {
-  padding: .5em;
+.input-container input {
+  display: inline-block;
+  padding: 0.5em;
   margin: 2em;
   font-size: 14pt;
-  width: 80%;
 }
 
-.button {
-  margin: 1em;
-  padding: 1em 2em;
+.input-container input[type=text] {
+  width: 70%;
+}
+
+.input-container input[type=submit] {
+  max-width: 30%;
+  margin: 0.5em;
+  padding: 0.5em 2em;
   cursor: pointer;
   text-transform: uppercase;
   /*letter-spacing: .5em;*/
@@ -21,9 +26,13 @@
   background: #004bb4;
 }
 
-.submit {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin: 1em;
+@media all and (max-width: 900px) {
+  .input-container input {
+    display: block;
+    margin: 0;
+  }
+
+  .input-container input[type=text] {
+    width: 100%;
+  }
 }
