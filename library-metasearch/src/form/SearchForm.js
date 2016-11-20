@@ -5,6 +5,7 @@ export default class SearchForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.handleSubmit(this.state.value);
+    this.setState({ value: "" })
   };
 
   handleChange = event => {
