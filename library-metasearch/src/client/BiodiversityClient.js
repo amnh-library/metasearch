@@ -6,9 +6,9 @@ const API_KEY = '4d93133f-aa09-4f77-892b-a40c331628ac';
 
 const MAX_SUBJECTS = 20;
 
-const MAX_TITLES = 5;
+const MAX_TITLES = 3;
 
-function parseSubjectNames(xml) {
+function parseSubjects(xml) {
   let $xml = $(xml);
   let $subjects = $xml.find('Result Subject').slice(0, MAX_SUBJECTS);
 
@@ -27,7 +27,7 @@ function parseSubjectNames(xml) {
   });
 }
 
-function parseSubjectTitles(xml) {
+function parseTitles(xml) {
   let $xml = $(xml);
 
   let $titles = $xml.find('Result Title').slice(0, MAX_TITLES);
@@ -44,17 +44,17 @@ function parseSubjectTitles(xml) {
   );
 }
 
-function parseTitleItem(subject_title, xml) {
+function parseItem(title, xml) {
   let $xml = $(xml);
 
   let $items = $xml.find('Result Item');
 
-  if ($items.length === 1) {
+  if ($items.length > 0) {
     let $item = $items.first();
 
     return {
-      title_id: subject_title.title_id,
-      short_title: subject_title.short_title,
+      title_id: title.title_id,
+      short_title: title.short_title,
       item_thumbnail_url: $item.find('ItemThumbUrl').text(),
       title_url: $item.find('TitleUrl').text(),
     };
@@ -65,84 +65,117 @@ function parseTitleItem(subject_title, xml) {
 
 function fetchSubjectTitles(subject_names) {
   if (subject_names.length > 0) {
-    return $.ajax({
-      url: API_BASE_URL,
-      method: 'GET',
-      data: {
-        op: 'GetSubjectTitles',
-        subject: subject_names[0],
-        apikey: API_KEY,
-      },
-    }).then((xml, textStatus, jqXHR) => {
-      let subject_titles = parseSubjectTitles(xml);
+    return queryBiodiversity(
+      'GetSubjectTitles',
+      {subject: subject_names[0]},
+      (xml, textStatus, jqXHR) => {
+        let titles = parseTitles(xml);
 
-      let title_item_promises = fetchTitleItems(subject_titles);
-
-      return Promise.all(title_item_promises).then(title_items => {
-        return {
-          title_items: title_items,
-        };
+        return Promise.all(fetchItemsForTitles(titles)).then(items => {
+          return {
+            title_items: items,
+          };
+        });
       });
-    }).catch(() => {
-      return Promise.resolve({});
-    });
   } else {
     return Promise.resolve({});
   }
 }
 
-function fetchTitleItems(subject_titles) {
+function fetchItemsForTitles(subject_titles) {
   if (subject_titles.length > 0) {
     return subject_titles.map(function (subject_title) {
-      return fetchTitleItem(subject_title);
+      return fetchItemForTitle(subject_title);
     });
   } else {
     return [];
   }
 }
 
-function fetchTitleItem(subject_title) {
+function fetchItemForTitle(subject_title) {
   if (subject_title) {
-    return $.ajax({
-      url: API_BASE_URL,
-      method: 'GET',
-      data: {
-        op: 'GetTitleItems',
-        titleid: subject_title.title_id,
-        apikey: API_KEY,
-      },
-      dataType: 'xml',
-    }).then((xml, textStatus, jqXHR) => {
-      return parseTitleItem(subject_title, xml);
-    }).catch(() => {
-      return Promise.resolve({});
-    });
+    return queryBiodiversity(
+      'GetTitleItems',
+      {titleid: subject_title.title_id},
+      (xml, textStatus, jqXHR) => {
+        return parseItem(subject_title, xml);
+      });
   } else {
     return Promise.resolve({});
   }
 }
 
-function run(term) {
+function searchSubject(term) {
   if (term) {
-    return $.ajax({
-      url: API_BASE_URL,
-      method: 'GET',
-      data: {
-        op: 'SubjectSearch',
-        subject: term,
+    return queryBiodiversity(
+      'SubjectSearch',
+      {subject: term},
+      (xml, textStatus, jqXHR) => {
+        let subject_names = parseSubjects(xml);
+        return fetchSubjectTitles(subject_names);
+      });
+  } else {
+    return Promise.resolve({});
+  }
+}
+
+function searchTitle(term) {
+  if (term) {
+    return queryBiodiversity(
+      'TitleSearchSimple',
+      {title: term},
+      (xml, textStatus, jqXHR) => {
+        let titles = parseTitles(xml);
+
+        return Promise.all(fetchItemsForTitles(titles)).then(items => {
+          return {
+            title_items: items,
+          };
+        });
+      }
+    );
+  } else {
+    return Promise.resolve({});
+  }
+}
+
+function queryBiodiversity(operation, data, promise) {
+  return $.ajax({
+    url: API_BASE_URL,
+    method: 'GET',
+    data: $.extend(
+      {
+        op: operation,
         apikey: API_KEY,
       },
-      dataType: 'xml',
-    }).then((xml, textStatus, jqXHR) => {
-      let subject_names = parseSubjectNames(xml);
-      return fetchSubjectTitles(subject_names);
-    }).catch(() => {
-      return Promise.resolve({});
+      data
+    ),
+    dataType: 'xml',
+  }).then(promise).catch(() => {
+    return Promise.resolve({});
+  });
+}
+
+function run(term) {
+  let searches = [
+    searchSubject(term),
+    searchTitle(term)
+  ];
+
+  return Promise.all(searches).then(results => {
+    let merged_items = [];
+    $.each(results, function (index, result) {
+      if (!$.isEmptyObject(result) && result.title_items.length > 0) {
+        $.merge(merged_items, result.title_items);
+      }
     });
-  } else {
-    // todo empty promise
-    return {};
-  }
+
+    if (merged_items.length > 0) {
+      return {title_items: merged_items.slice(0, MAX_TITLES)};
+    } else {
+      return {};
+    }
+  });
 }
 
 export default {
