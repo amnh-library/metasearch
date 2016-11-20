@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import SearchForm from '../form/SearchForm'
+import ResultsWrapper from '../results/ResultsWrapper.js'
 import BiodiversityResults from '../results/BiodiversityResults.js'
 import BiodiversityClient from '../client/BiodiversityClient.js'
 
@@ -13,9 +14,7 @@ import BiodiversityClient from '../client/BiodiversityClient.js'
 */
 
 const apis = {
-  biodiversity: {
-    client: BiodiversityClient,
-  }
+  biodiversity: BiodiversityClient
 };
 
 export default class Container extends Component {
@@ -25,6 +24,7 @@ export default class Container extends Component {
     this.state = {
       term: '',
       results: [],
+      result_count: 0,
     };
   }
 
@@ -32,33 +32,52 @@ export default class Container extends Component {
     console.log('handleSearchSubmit too ' + term);
     this.setState({ term });
 
+    var result_count = this.state.result_count
     Object.keys(apis).forEach(api => {
-      apis[api].client.run(term).then((result) => {
+      apis[api].run(term).then((result) => {
         this.setState({
-          results: [{
+          results: this.state.results.concat([{
             data: result,
             api: api,
             term: term,
-          }]
+            result_id: result_count,
+          }])
         });
       });
+      result_count+=1;
     });
+
+    this.setState({result_count: result_count});
+  }
+
+  renderApiResultWrapper(result) {
+    let onCloseResult = () => this.setState({
+      results: this.state.results.filter((r) => r.result_id != result.result_id)
+    })
+    return <ResultsWrapper
+        key={result.result_id}
+        onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>
   }
 
   renderApiResult(result) {
     switch (result.api) {
       case 'biodiversity':
-        return <BiodiversityResults term={result.term} key={result.api} results={result.data}/>
+        return <BiodiversityResults term={result.term} results={result.data}/>
     }
   }
 
   render() {
     const styles = {};
 
+    var apiResults = [];
+    this.state.results.forEach(r =>
+        apiResults.unshift(this.renderApiResultWrapper(r)
+    ))
+
     return (
       <div style={styles.container}>
         <SearchForm handleSubmit={this.handleSearchSubmit} />
-        {this.state.results.map(this.renderApiResult)}
+        {apiResults}
       </div>
     );
   }
