@@ -8,7 +8,8 @@ var express = require('express')
 var app = express()
 var extend = require('util')._extend;
 
-app.set('port', (process.env.PORT || 5000));
+app.set('domain', process.env.DEV_SEARCHSERVER_HOST);
+app.set('port', process.env.DEV_SEARCHSERVER_PORT || process.env.DEV_SEARCHSERVER_ALTPORT);
 
 sierra.configure({
     host: 'libcat1.amnh.org',
