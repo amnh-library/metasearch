@@ -4,7 +4,7 @@ const MAX_RESULTS = 4;
 
 function run(term) {
   return $.ajax({
-    url: 'http://10.20.40.218:3000/api/v1/images/',
+    url: 'https://api-dev.library.amnh.org/api/v1/images/',
     data: {q:term},
   }).then(function (data, textStatus) {
     if (data && data.length > 0) {

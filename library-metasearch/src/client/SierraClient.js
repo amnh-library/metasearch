@@ -1,5 +1,5 @@
 import $ from 'jquery';
-const API_BASE_URL = 'https://fast-refuge-26073.herokuapp.com/sierra/';
+const API_BASE_URL = 'https://api-dev.library.amnh.org/api/v1/sierra/';
 
 function run(term) {
     return $.ajax({

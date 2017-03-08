@@ -1,6 +1,6 @@
 const API_BASE_URL = 'libcat1.amnh.org';
-const API_KEY = 'Z7C5m/M14Uj5gpVwGvPJerotKkt8';
-const API_SECRET = '4kYjKCaiyJang3n7FmuPUt';
+const API_KEY = process.env.SIERRA_API_KEY;
+const API_SECRET = process.env.SIERRA_API_SECRET;
 
 var sierra = require('sierra-api-client');
 var request = require('request');

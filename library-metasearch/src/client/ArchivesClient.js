@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 function run(term) {
   return $.ajax({
-    url: 'http://10.20.40.218:3000/api/v1/resources/archives-space',
+    url: 'https://api-dev.library.amnh.org/api/v1/resources/archives-space',
     dataType: 'json',
     data: {q:term},
   }).then(function (data, textStatus) {
