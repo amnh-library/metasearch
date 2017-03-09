@@ -1,5 +1,5 @@
 import $ from 'jquery';
-const API_BASE_URL = 'https://api-dev.library.amnh.org/api/v1/sierra/';
+const API_BASE_URL = 'http://api-dev.library.amnh.org/api/v1/resources/sierra';
 
 function run(term) {
     return $.ajax({
