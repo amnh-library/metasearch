@@ -8,7 +8,7 @@ export default class ResultsWrapper extends React.Component {
         <div className="results-body">
           <h3>
             <span>{this.props.api}: </span>
-            {this.props.term}
+            {this.props.term} ({this.props.number_results})
             <button className="close-btn" onClick={this.props.onClose}>&times;</button>
           </h3>
           {this.props.children}
