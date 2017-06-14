@@ -1,6 +1,8 @@
-# :books: :books: http://amnh-meta-search.herokuapp.com/ :books: :books: 
+The AMNH metasearch prototype is available on the internal network at this address:
 
-Repo for team One Big Room, working on the [Library Metasearch](https://github.com/amnh/HackTheStacks/wiki/Library-Metasearch) challenge
+http://search-dev.library.amnh.org/
+
+This solution was one of those selected for the [Library Metasearch](https://github.com/amnh/HackTheStacks/wiki/Library-Metasearch) challenge
 
 Example search terms to try using:
 
