@@ -1,8 +1,14 @@
 import $ from 'jquery';
 
+if (process.env.REACT_APP_ENVIRONMENT === 'development') {
+  const API_BASE_URL = 'http://api-dev.library.amnh.org/api/v1/resources/archives-space';
+} else {
+  const API_BASE_URL = 'http://api.library.amnh.org/api/v1/resources/archives-space';
+}
+
 function run(term) {
   return $.ajax({
-    url: 'http://api-dev.library.amnh.org/api/v1/resources/archives-space',
+    url: API_BASE_URL,
     dataType: 'json',
     data: {q:term},
   }).then(function (data, textStatus) {
