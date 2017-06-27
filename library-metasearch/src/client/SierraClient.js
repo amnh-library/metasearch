@@ -1,5 +1,12 @@
 import $ from 'jquery';
-const API_BASE_URL = 'http://api-dev.library.amnh.org/api/v1/resources/sierra';
+
+if (process.env.REACT_APP_ENVIRONMENT === 'development') {
+  const API_BASE_URL = 'http://api-dev.library.amnh.org/api/v1/resources/sierra';
+} else {
+  const API_BASE_URL = 'http://api.library.amnh.org/api/v1/resources/sierra';
+}
+
+app.listen(process.env.REACT_APP_PORT);
 
 function run(term) {
     return $.ajax({
