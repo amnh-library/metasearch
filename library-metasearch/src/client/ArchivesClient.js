@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const API_BASE_URL = 'http://api.library.amnh.org/api/v1/resources/archives-space';
+var API_BASE_URL = 'http://api.library.amnh.org/api/v1/resources/archives-space';
 
 if (process.env.REACT_APP_ENVIRONMENT === 'development') {
   API_BASE_URL = 'http://api-dev.library.amnh.org/api/v1/resources/archives-space';
