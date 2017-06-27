@@ -1,12 +1,12 @@
 import $ from 'jquery';
 
-function run(term) {
-  if (process.env.REACT_APP_ENVIRONMENT === 'development') {
-    const API_BASE_URL = 'http://api-dev.library.amnh.org/api/v1/resources/archives-space';
-  } else {
-    const API_BASE_URL = 'http://api.library.amnh.org/api/v1/resources/archives-space';
-  }
+const API_BASE_URL = 'http://api.library.amnh.org/api/v1/resources/archives-space';
 
+if (process.env.REACT_APP_ENVIRONMENT === 'development') {
+  API_BASE_URL = 'http://api-dev.library.amnh.org/api/v1/resources/archives-space';
+}
+
+function run(term) {
   return $.ajax({
     url: API_BASE_URL,
     dataType: 'json',
