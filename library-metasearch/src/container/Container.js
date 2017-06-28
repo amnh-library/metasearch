@@ -103,6 +103,7 @@ export default class Container extends Component {
           term={result.term}
           age={result.result_group % 5}
           api={result.api}
+          number_results={this.fetchNumberOfResults(result)}
           onClose={onCloseResult}>{this.renderApiResult(result)}</ResultsWrapper>
       );
     }
@@ -122,6 +123,24 @@ export default class Container extends Component {
         return <OmekaResults results={result.data}/>
       default:
         return null;
+    }
+  }
+
+  fetchNumberOfResults(result) {
+    //Map result object to api for number of results
+    switch (result.api) {
+      case 'biodiversity library':
+        return ( result.data.title_items || [] ).length;
+      case 'wikipedia':
+        return 1;
+      case 'sierra':
+        return ( result.data.entries || [] ).length;
+      case 'archives':
+        return result.data.length;
+      case 'omeka':
+        return result.data.length;
+      default:
+        return 0;
     }
   }
 
